@@ -11,7 +11,7 @@ public class Simulation {
         int max = 20000;
         int min = 10000;
         int r = (int)(Math.random() * (max - min)) + min;
-        return (r % 15000 + 4000);
+        return (r % 15000 + 4501);
     }
 
 
@@ -66,8 +66,14 @@ public class Simulation {
             }
         }
         printString(vehicle.checkFinalStatus());
-        if (status != null) {
-            return status.getStatus();
+        if (vehicle.checkFinalStatus().equals(vehicle.dead)) {
+            return -3;
+        } else if (vehicle.checkFinalStatus().equals(vehicle.crashed)) {
+            return -2;
+        } else if (vehicle.checkFinalStatus().equals(vehicle.emptyfuel)) {
+            return -1;
+        } else if (vehicle.checkFinalStatus().equals(vehicle.success)) {
+            return 0;
         }
         return -1;
     }
